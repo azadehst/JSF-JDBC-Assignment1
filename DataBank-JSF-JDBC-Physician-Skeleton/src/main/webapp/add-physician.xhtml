@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  >
+  <!-- View that adds new physician -->
+
+  <h:head>
+    <!-- Title of tab/window in browser -->
+    <title>#{uiconsts['addButtonLabel']}</title>
+  </h:head>
+  <h:body>
+    <h2>#{uiconsts['addButtonLabel']}</h2>
+    <br/>
+    <p>Create a physician here.  You can use "h:panelGrid", "h:outputText", "h:inputText", ""h:selectOneMenu", "f:selectItems", "h:commandButton", "h:form", and "h:outputLink"</p>
+    <p>Add a hyperlink to return to list-physicians.xhtml</p>
+    <h:form>
+      <h:panelGrid columns="2">
+        <h:outputText value="#{uiconsts['columnLabel_FirstName']}" />
+        <h:inputText value="#{newPhysician.firstName}" id="firstName" />
+
+        <h:outputText value="#{uiconsts['columnLabel_LastName']}" />
+        <h:inputText value="#{newPhysician.lastName}" id="lastName" />
+        
+        <h:outputText value="#{uiconsts['columnLabel_Email']}" />
+        <h:inputText value="#{newPhysician.email}" id="email" />
+        
+        <h:outputText value="#{uiconsts['columnLabel_PhoneNumber']}"/>
+        <h:inputText value="#{newPhysician.phoneNumber}" id="phoneNumber" />
+
+        <h:outputText value="#{uiconsts['columnLabel_Specialty']}"/>
+        <h:selectOneMenu value="#{newPhysician.specialty}" id="specialty">
+          <f:selectItems value="#{physicianController.specialties}" var="specialty" itemValue="#{specialty}" />
+        </h:selectOneMenu>
+
+        <h:commandButton value="Submit" action="#{physicianController.submitPhysician(newPhysician)}" />
+      </h:panelGrid>
+    </h:form>
+
+    <br/>
+    <h:outputLink value="list-physicians.xhtml">Return to List of Physicians</h:outputLink>
+  </h:body>
+</html>
